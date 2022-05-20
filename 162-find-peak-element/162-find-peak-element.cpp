@@ -1,12 +1,20 @@
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
-        for (int i = 1;i < nums.size() - 1;i++) {
-            if ((nums[i] > nums[i-1]) && (nums[i] > nums[i+1])) {
-                return i;
+        if (nums.size() == 1) return 0;
+        return breakingPoint(nums);
+    }
+private:
+    int breakingPoint(vector<int> &nums) {
+        int si = 0, ei = nums.size() - 1;
+        while (si < ei) {
+            int m = si + (ei - si) / 2;
+            if (nums[m] < nums[m+1]) {
+                si = m +1;
+            } else {
+                ei = m;
             }
         }
-        if (nums.size() >= 2 && nums[0] > nums[1]) return 0; 
-        return (nums.size() >= 2 && nums[nums.size()-1] < nums[nums.size() - 2]) ? (nums.size() - 2) : (nums.size() - 1);
+        return si;
     }
 };
