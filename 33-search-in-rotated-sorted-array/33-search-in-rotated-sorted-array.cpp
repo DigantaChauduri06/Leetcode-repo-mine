@@ -1,36 +1,49 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
+        if (nums.size() == 1) {
+            return (nums[0] == target) ? 0 : -1;
+        }
         int pivot = breakingPoint(nums);
         if (pivot == -1) {
-            return binary_search(nums, target, 0,nums.size());
+            return binary_search(nums, target, 0, nums.size() - 1);
         }
         if (nums[pivot] == target) return pivot;
-        int ls = binary_search(nums, target, 0, pivot); 
-        return ls == -1 ? binary_search(nums, target, pivot+1, nums.size() - 1) : ls;
+        int left = binary_search(nums, target, 0, pivot - 1);
+        return (left == -1) ? binary_search(nums, target, pivot + 1, nums.size() - 1) : left;
     }
 private:
-    int binary_search(vector<int>& nums, int k, int si, int ei) {
-        while (si <= ei) {
-            int m = si + (ei - si) / 2;
+    int binary_search(vector<int> &nums, int k, int i, int j) {
+        while (i <= j) {
+            int m = i + (j - i) / 2;
             if (nums[m] == k) return m;
-            else if (nums[m] < k) si = m + 1;
-            else ei = m - 1;
+            if (nums[m] > k) {
+                j = m - 1;
+            } else {
+                i = m + 1;
+            }
         }
         return -1;
     }
     int breakingPoint(vector<int> &nums) {
-        int si = 0, ei = nums.size() - 1;
-        int pos = -1;
-        while (si <= ei) {
-            int m = si + (ei - si) / 2;
-            if (nums[m] <= nums.front() && nums[m] <= nums.back()) {
-                pos = m;
-                ei = m - 1;
+        int pivot = -1;
+        int f = nums.front(), l = nums.back();
+        int i = 0, j = nums.size() - 1;
+        if (nums.size() >= 2 && l < nums[nums.size() - 2]) return nums.size() - 1;
+        if (f <= l) return 0;
+        while (i <= j) {
+            int m = i + (j - i) / 2;
+            if ((m != 0 && m != nums.size() - 1) && (nums[m] < nums[m - 1] && nums[m] < nums[m+1])) return m;
+            if (nums[m] > f && nums[m] < l) {
+                return -1;
+            }
+            if (nums[m] > f && nums[m] > l) {
+                i = m + 1;
             } else {
-                si = m + 1;
+                j = m;
             }
         }
-        return pos;
+        return -1;
+        
     }
 };
