@@ -3,6 +3,7 @@ class Solution {
 public:
     vector<vector<int>> kClosest(vector<vector<int>>& p, int k) {                                                       
         auto comp = [](prii &a, prii &b) {
+            // max-heap
             return a.first <= b.first;
         };
         priority_queue<prii,vector<prii>, decltype(comp)> pq(comp);
