@@ -15,9 +15,7 @@ public:
         if (!root) return 0;
         int rVal = root->val;
         int left = countGood(root->left, rVal, rVal);
-        // cout << root->right->val << endl;
         int right = countGood(root->right, rVal, rVal);
-        // cout << left << " " << right << endl;
         return  left + right + 1;
     }
 private:
