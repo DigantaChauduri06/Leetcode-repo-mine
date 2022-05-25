@@ -14,14 +14,14 @@ public:
     int goodNodes(TreeNode* root) {
         if (!root) return 0;
         int rVal = root->val;
-        int left = countGood(root->left, rVal, rVal);
-        int right = countGood(root->right, rVal, rVal);
+        int left = countGood(root->left, rVal);
+        int right = countGood(root->right, rVal);
         return  left + right + 1;
     }
 private:
-    int countGood(TreeNode *node, int rootVal, int mxVal) {
+    int countGood(TreeNode *node, int mxVal) {
         if (!node) return 0;
         mxVal = max(mxVal, node->val);
-        return (node->val >= mxVal) + countGood(node->left, mxVal, mxVal) + countGood(node->right, mxVal, mxVal);
+        return (node->val >= mxVal) + countGood(node->left, mxVal) + countGood(node->right, mxVal);
     }
 };
