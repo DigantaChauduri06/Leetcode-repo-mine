@@ -3,7 +3,7 @@ public:
     vector<vector<int>> combinationSum(vector<int>& cand, int tar) {
         vector<vector<int>> ans;
         vector<int> temp;
-        sort(begin(cand),end(cand));
+        // sort(begin(cand),end(cand));
         fun(cand, ans, temp, tar, 0);
         return ans;
     }
