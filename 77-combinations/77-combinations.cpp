@@ -3,12 +3,12 @@ public:
     vector<vector<int>> combine(int n, int k) {
         vector<vector<int>> ans;
         vector<int> temp;
-        fun(ans, temp,0, k, n+1);
+        fun(ans, temp,0, k, n);
         return ans;
     }
 private:
     void fun(vector<vector<int>> &ans, vector<int> &temp,int i, int k, int n) {
-        if (i== (n-1)) {
+        if (i== n) {
             if (size(temp) == k) {
                 ans.push_back(temp);
             }
