@@ -2,10 +2,6 @@ class Solution {
 public:
     vector<vector<int>> combine(int n, int k) {
         vector<vector<int>> ans;
-        //vector<int> nums;
-        // for (int i = 1;i <= n;i++) {
-        //     nums.push_back(i);
-        // }
         vector<int> temp;
         fun(ans, temp,0, k, n+1);
         return ans;
