@@ -1,12 +1,11 @@
 class Solution:
     def combinationSum2(self, cand: List[int], tar: int) -> List[List[int]]:
-        j = 0
         res = []
         temp = []
         cand.sort()
         def fun(j, tar):
             if tar == 0:
-                res.append(temp.copy())
+                res.append(temp[:])
                 return
             elif tar < 0:
                 return
