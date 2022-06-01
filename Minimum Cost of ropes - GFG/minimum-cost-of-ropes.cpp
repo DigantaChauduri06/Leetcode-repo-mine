@@ -13,25 +13,21 @@ class Solution
         // Your code here
         // sort(arr, arr+n);
         priority_queue<ll, vector<ll>, greater<ll>> pq;
-        vector<ll> vc;
+        // vector<ll> vc;
         for (int i = 0;i < n;i++) {
             pq.push(arr[i]);
         }
+        ll ans = 0;
         while (pq.size() > 1) {
             ll top1 = pq.top();
             pq.pop();
             ll top2 = pq.top();
             pq.pop();
             ll sum = top1 + top2;
-            vc.push_back(sum);
+            ans += sum;
             pq.push(sum);
         }
-        ll sum = 0;
-        for (auto &a : vc) {
-            sum += a;
-        }
-        // cout << sum << endl;
-        return sum;
+        return ans;
     }
 };
 
