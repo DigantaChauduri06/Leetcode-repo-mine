@@ -9,8 +9,7 @@ typedef long long ll;
     long long sumBetweenTwoKth(ll A[],ll N,ll k1,ll k2)
     {
         // Your code goes here
-        if (k1  == k2) return 0;
-        if (k1+1 == k2) return 0;
+        if (k1  >= k2) return 0;
         auto first = kthSmallest(A, N, k1);
         auto second = kthSmallest(A, N, k2);
         ll f = first.second; 
