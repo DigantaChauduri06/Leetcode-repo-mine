@@ -4,43 +4,40 @@ using namespace std;
 
  // } Driver Code Ends
 class Solution {
-  public:
-    // Function to detect cycle in an undirected graph.
-   bool check_BFS(vector<int> adj[],int sv,vector<bool> &vis) {
-    queue<pair<int,int>> q;
-    q.push({sv,-1});
-    vis[sv] = true;
-    while (!q.empty()) {
-        int size =q.size();
-        while (size--) {
-            auto f = q.front();
+   bool check_BFS(vector<int> adj[], int sv,unordered_set<int> &st) {
+        // Code here
+        queue<pair<int,int>> q;
+        q.push({sv,-1});
+        st.insert(sv);
+        while (!q.empty()) {
+            auto parent = q.front();
             q.pop();
-            int prev = f.second;
-            int curr = f.first;
-            for (auto &node : adj[curr]) {
-                if (!vis[node]) {
-                    q.push({node,curr});
-                    vis[node] = true;
-                }
-                else {
-                    if (prev != node) return true;
+            int cur = parent.first;
+            int prev = parent.second;
+            for (auto &child : adj[cur]) {
+                if (st.find(child) == st.end()) {
+                    // cout << parent << ":" << child << endl;
+                    q.push({child, cur});
+                    st.insert(child);
+                } else {
+                    if (prev != child) {
+                        // cout << parent << ":" << child << endl;
+                        return 1;
+                    }
                 }
             }
         }
+        return false;
     }
-    return false;
-    
-}
-    bool isCycle(int V, vector<int> adj[]) {
+public:
+     bool isCycle(int V, vector<int> adj[]) {
         // Code here
-    
-            vector<bool> vis(V,false);
+    unordered_set<int> st;
     for (int i = 0;i < V;i++) {
-        if (!vis[i] && check_BFS(adj,i,vis)) return true;
+        if (st.find(i) == st.end() && check_BFS(adj,i,st)) return true;
     }
     return false;
 }
-
 };
 
 // { Driver Code Starts.
