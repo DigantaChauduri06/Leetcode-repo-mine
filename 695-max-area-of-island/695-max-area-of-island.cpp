@@ -23,26 +23,33 @@ private:
             return cnt;
         queue<pair<int, int>> q;
         q.push({i,j});
+        cnt++;
         while (!q.empty()) {
             auto f = q.front();
             q.pop();
             int x = f.first;
             int y = f.second;
-            cnt++;
             grid[x][y] = 0;
            if (inRange(x-1,y,m,n) && grid[x-1][y] == 1){
+            cnt++;
                     grid[x-1][y] = 0;
                     q.push({x-1, y});
             }
             if (inRange(x+1,y,m,n) && grid[x+1][y] == 1){
-                    grid[x+1][y] = 0;
+            cnt++;
+                  
+                grid[x+1][y] = 0;
                     q.push({x+1, y});
             }
             if (inRange(x,y-1,m,n) && grid[x][y-1] == 1){
-                    grid[x][y-1] = 0;
+            cnt++;
+                
+                grid[x][y-1] = 0;
                     q.push({x, y-1});
             }
             if (inRange(x,y+1,m,n) && grid[x][y+1] == 1){
+            cnt++;
+                
                 grid[x][y+1] = 0;
                 q.push({x, y+1});
             }
