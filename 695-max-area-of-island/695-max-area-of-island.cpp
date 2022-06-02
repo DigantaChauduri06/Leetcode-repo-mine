@@ -6,7 +6,7 @@ public:
         for (int i = 0;i < m;i++) {
             for (int j = 0;j < n;j++) {
                 if (grid[i][j] == 1) {
-                   int cnt = bfs(grid, i, j, m, n);
+                   int cnt = dfs(grid, i, j, m, n);
                     mx = max(mx, cnt);
                 }
             }
@@ -14,46 +14,16 @@ public:
         return mx;
     }
 private:
-    bool inRange(int i, int j, int m, int n) {
-        return (i >= 0 && j >= 0 && i < m && j < n);
+    bool inRange(vector<vector<int>> &grid,int i, int j, int m, int n) {
+        return (i >= 0 && j >= 0 && i < m && j < n) && (grid[i][j] == 1);
     }
-    int bfs(vector<vector<int>>& grid, int i, int j, int m, int n) {
-        int cnt = 0;
-        if (i < 0 || j < 0 || i >= m || j >= n)
-            return cnt;
-        queue<pair<int, int>> q;
-        q.push({i,j});
-        cnt++;
-        while (!q.empty()) {
-            auto f = q.front();
-            q.pop();
-            int x = f.first;
-            int y = f.second;
-            grid[x][y] = 0;
-           if (inRange(x-1,y,m,n) && grid[x-1][y] == 1){
-            cnt++;
-                    grid[x-1][y] = 0;
-                    q.push({x-1, y});
-            }
-            if (inRange(x+1,y,m,n) && grid[x+1][y] == 1){
-            cnt++;
-                  
-                grid[x+1][y] = 0;
-                    q.push({x+1, y});
-            }
-            if (inRange(x,y-1,m,n) && grid[x][y-1] == 1){
-            cnt++;
-                
-                grid[x][y-1] = 0;
-                    q.push({x, y-1});
-            }
-            if (inRange(x,y+1,m,n) && grid[x][y+1] == 1){
-            cnt++;
-                
-                grid[x][y+1] = 0;
-                q.push({x, y+1});
-            }
-        }
-        return cnt;
+    int dfs(vector<vector<int>> &grid, int i,int j,int m, int n) {
+        if (inRange(grid, i,j,m,n)) {
+            grid[i][j] = 0;
+            return 1 + dfs(grid,i+1,j, m, n) +
+                dfs(grid, i-1, j,m, n) +
+                dfs(grid, i, j+1, m, n) +
+                dfs(grid, i, j-1,m, n);
+        } else return 0;
     }
 };
