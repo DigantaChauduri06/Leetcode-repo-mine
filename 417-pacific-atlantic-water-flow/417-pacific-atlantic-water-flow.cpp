@@ -1,39 +1,47 @@
 class Solution {
+    int ROW, COL;
 public:
-    vector<vector<int>> pacificAtlantic(vector<vector<int>>& g) {
-        int row = g.size(), col = g[0].size();
-        if(row == 0) return {};
-        vector<vector<int>> ans;
-        vector<vector<bool>> atlantic(row, vector<bool>(col, false));
-        vector<vector<bool>> pacafic(row, vector<bool>(col, false));
-        for(int i=0; i<col; i++)
-        {
-            dfs(g, pacafic, INT_MIN, 0, i);
-            dfs(g, atlantic, INT_MIN, row-1, i);
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& H) {
+        ROW = size(H), COL = size(H[0]);
+        if(ROW == 0) return {};
+        vector<vector<bool>> pac(ROW, vector<bool>(COL, false));
+        vector<vector<bool>> atl(ROW, vector<bool>(COL, false));
+        // first row (pacific) and last row (atlantic)
+        for (int c = 0;c < COL;c++) {
+            // pacific
+            dfs(H, 0, c, pac, H[0][c]);
+            // atlantic
+            dfs(H, ROW-1, c, atl, H[ROW-1][c]);
         }
-        for(int i=0; i<row; i++)
-        {
-            dfs(g, pacafic, INT_MIN, i, 0);
-            dfs(g, atlantic, INT_MIN, i, col-1);
+        // first col (pacific) and last col (atlantic)
+        for (int r = 0;r < ROW;r++) {
+            // pacific
+            dfs(H, r, 0, pac, H[r][0]);
+            // atlantic
+            dfs(H, r, COL-1, atl, H[r][COL-1]);
         }
-        for (int i = 0;i < row;i++) {
-            for (int j = 0;j < col;j++) {
-                if (atlantic[i][j] && pacafic[i][j]) {
-                    ans.push_back({i,j});
-                }
+        vector<vector<int>> res;
+        // Intersection of pacific and atlantic will be our answer
+        for (int i = 0;i < ROW;i++) {
+            for (int j = 0;j < COL;j++) {
+                if (pac[i][j] and atl[i][j]) 
+                    res.push_back({i, j});
             }
         }
-        return ans;
+        return res;
     }
 private:
-    void dfs(vector<vector<int>>& matrix, vector<vector<bool>>& visited, int prev, int i, int j)
-    {
-        if(i < 0 || j < 0 || i >= matrix.size() || j >= matrix[0].size() || prev > matrix[i][j] || visited[i][j]) return;
-        
-        visited[i][j] = true;
-        dfs(matrix, visited, matrix[i][j], i+1, j);
-        dfs(matrix, visited, matrix[i][j], i-1, j);
-        dfs(matrix, visited, matrix[i][j], i, j+1);
-        dfs(matrix, visited, matrix[i][j], i, j-1);
+    void dfs(vector<vector<int>>& H, int i, int j,  vector<vector<bool>> &seen, int prev) {
+        if (i < 0 or
+           j < 0 or
+           i >= ROW or
+           j >= COL or
+           prev > H[i][j] or
+           seen[i][j]) return;
+        seen[i][j] = true;
+        dfs(H, i+1, j, seen, H[i][j]);
+        dfs(H, i-1, j, seen, H[i][j]);
+        dfs(H, i, j+1, seen, H[i][j]);
+        dfs(H, i, j-1, seen, H[i][j]);
     }
 };
