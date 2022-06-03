@@ -1,23 +1,23 @@
 class Solution {
 public:
     vector<vector<int>> pacificAtlantic(vector<vector<int>>& g) {
-        int n = g.size(), m = g[0].size();
-        if(n == 0) return {};
+        int row = g.size(), col = g[0].size();
+        if(row == 0) return {};
         vector<vector<int>> ans;
-        vector<vector<bool>> atlantic(n, vector<bool>(m, false));
-        vector<vector<bool>> pacafic(n, vector<bool>(m, false));
-        for(int i=0; i<m; i++)
+        vector<vector<bool>> atlantic(row, vector<bool>(col, false));
+        vector<vector<bool>> pacafic(row, vector<bool>(col, false));
+        for(int i=0; i<col; i++)
         {
             dfs(g, pacafic, INT_MIN, 0, i);
-            dfs(g, atlantic, INT_MIN, n-1, i);
+            dfs(g, atlantic, INT_MIN, row-1, i);
         }
-        for(int i=0; i<n; i++)
+        for(int i=0; i<row; i++)
         {
             dfs(g, pacafic, INT_MIN, i, 0);
-            dfs(g, atlantic, INT_MIN, i, m-1);
+            dfs(g, atlantic, INT_MIN, i, col-1);
         }
-        for (int i = 0;i < n;i++) {
-            for (int j = 0;j < m;j++) {
+        for (int i = 0;i < row;i++) {
+            for (int j = 0;j < col;j++) {
                 if (atlantic[i][j] && pacafic[i][j]) {
                     ans.push_back({i,j});
                 }
