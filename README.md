@@ -2,6 +2,6 @@
 ->Here I will be posting my daily leetcode answers...
 
 
--> www.leetcode.com
+-> <a href="https://leetcode.com" target="_blank">Leetcode</a>
 <br />
--> https://neetcode.com
+->  <a href="https://neetcode.io" target="_blank">Neetcode</a>
