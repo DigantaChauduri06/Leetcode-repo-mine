@@ -1,49 +1,35 @@
 class Solution {
+    int ROW, COL;
 public:
-    int numIslands(vector<vector<char>>& grid) {
-        int cnt = 0;
-        int m = grid.size();
-        int n = grid[0].size();
-        for (int i = 0;i < m;i++) {
-            for (int j = 0;j < n;j++) {
-                if (grid[i][j] == '1') {
-                    cnt++;
-                    bfs(grid, i, j, m, n);
+    int numIslands(vector<vector<char>>& G) {
+        ROW = size(G), COL = size(G[0]);
+        int count = 0;
+        for (int i = 0;i < ROW;i++) {
+            for (int j = 0;j < COL;j++) {
+                if (G[i][j] == '1') {
+                    count += 1;
+                    dfs(G, i, j);
                 }
             }
         }
-        return cnt; 
+        return count;
     }
 private:
-    bool isInRange(int i, int j, int m, int n) {
-        return (i >= 0 && j >= 0 && i < m && j < n);
+    void dfs(vector<vector<char>> &G, int i, int j) {
+        if (valid(G, i, j)) {
+            G[i][j] = '0';
+            // call in all dirs
+            dfs(G, i+1, j);
+            dfs(G, i-1, j);
+            dfs(G, i, j+1);
+            dfs(G, i, j-1);
+        } else return;
     }
-    void bfs(vector<vector<char>> &grid, int i, int j, int m, int n) {
-        if (i < 0 || j < 0 || i >= m || j >= n) return;
-        queue<pair<int, int>> q;
-        q.push({i,j});
-        while (q.size() != 0) {
-            auto f = q.front();
-            q.pop();
-            int x = f.first;
-            int y = f.second; 
-            grid[x][y] = '0';
-            if (isInRange(x-1,y,m,n) && grid[x-1][y] == '1'){
-                    grid[x-1][y] = '0';
-                    q.push({x-1, y});
-            }
-            if (isInRange(x+1,y,m,n) && grid[x+1][y] == '1'){
-                    grid[x+1][y] = '0';
-                    q.push({x+1, y});
-            }
-            if (isInRange(x,y-1,m,n) && grid[x][y-1] == '1'){
-                    grid[x][y-1] = '0';
-                    q.push({x, y-1});
-            }
-            if (isInRange(x,y+1,m,n) && grid[x][y+1] == '1'){
-                grid[x][y+1] = '0';
-                q.push({x, y+1});
-            }
-        }
+    bool valid(vector<vector<char>> &G, int i, int j) {
+        return i >= 0 and
+            j >= 0 and
+            i < ROW and
+            j < COL and
+            G[i][j] == '1';
     }
 };
