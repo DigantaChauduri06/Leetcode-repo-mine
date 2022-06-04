@@ -20,22 +20,17 @@ public:
 */
 
 class Solution {
+unordered_map<Node *, Node *> oldToNew;
 public:
     Node* cloneGraph(Node* node) {
         if (!node) return NULL;
-        unordered_map<Node *,Node *> mpp;
-        auto res = dfs(node, mpp);
-        return res;
-    }
-private:
-    Node* dfs(Node *node, unordered_map<Node *, Node *> &oldToNew) {
-        if (oldToNew.find(node) != oldToNew.end()) 
+        if (oldToNew.find(node) != oldToNew.end())
             return oldToNew[node];
         Node *nn = new Node(node->val);
         oldToNew[node] = nn;
-        // Trivarse The neighbors
         for (auto &nei : node->neighbors) {
-            nn->neighbors.push_back(dfs(nei, oldToNew));
+            Node *neiNodes = cloneGraph(nei);
+            nn->neighbors.push_back(neiNodes);
         }
         return nn;
     }
