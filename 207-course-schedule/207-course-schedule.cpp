@@ -1,5 +1,5 @@
 class Solution {
-    map<int, list<int>> adj;
+    unordered_map<int, list<int>> adj;
     unordered_set<int> st;
 public:
     bool canFinish(int numCourses, vector<vector<int>>& P) {
