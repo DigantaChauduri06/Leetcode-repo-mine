@@ -1,6 +1,6 @@
 class Solution {
     unordered_map<int, list<int>> adj;
-    unordered_set<int> st;
+    set<int> st;
 public:
     bool canFinish(int numCourses, vector<vector<int>>& P) {
         for (auto &p : P) {
