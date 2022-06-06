@@ -8,7 +8,7 @@ public:
             adj[p[0]].push_back(p[1]);
         }
         for (int i = 0;i < nc;i++) {
-            if (!topo_sort(i)) {
+            if (seen.find(i) == seen.end() && !topo_sort(i)) {
                 return {};
             }
         }
