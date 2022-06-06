@@ -7,7 +7,7 @@ public:
             adj[p[0]].push_back(p[1]);
         }
         for (int i = 0;i < numCourses;i++) {
-            if (!dfs(i)) return false;
+            if (st.find(i) == st.end() && !dfs(i)) return false;
         }
         return true;
     }
