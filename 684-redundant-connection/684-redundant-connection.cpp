@@ -29,10 +29,10 @@ public:
         // no cycle
         return false;
     }
-    // ~disjointSet() {
-    //     delete[] rank;
-    //     delete rank;
-    // }
+    ~disjointSet() {
+        delete[] rank;
+        delete rank;
+    }
 };
 class Solution {
 public:
