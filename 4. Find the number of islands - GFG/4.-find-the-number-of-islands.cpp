@@ -5,7 +5,6 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
   int ROW, COL;
-  vector<pair<int, int>> dirs = {{0, 1},{1, 0},{-1, 0}, {0, -1}, {1,1},{-1,-1}}; 
   public:
     // Function to find the number of islands.
     int numIslands(vector<vector<char>>& grid) {
