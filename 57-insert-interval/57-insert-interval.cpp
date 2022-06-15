@@ -4,10 +4,10 @@ public:
         
         I.push_back(NI);
         sort(begin(I), end(I));
-        return mergeIntervals(I, NI);;
+        return mergeIntervals(I);
     }
 private:
-    vector<vector<int>> mergeIntervals(vector<vector<int>> &I,vector<int>& NI) {
+    vector<vector<int>> mergeIntervals(vector<vector<int>> &I) {
         vector<vector<int>> ans;
         ans.push_back(I[0]);
         for (int i = 1;i < size(I);i++) {
