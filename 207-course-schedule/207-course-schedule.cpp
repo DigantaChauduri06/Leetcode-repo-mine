@@ -1,27 +1,36 @@
 class Solution {
-    unordered_map<int, list<int>> adj;
-    set<int> st;
+    map<int, list<int>> adj;
+    unordered_set<int> visited;
 public:
-    bool canFinish(int numCourses, vector<vector<int>>& P) {
-        for (auto &p : P) {
-            adj[p[0]].push_back(p[1]);
+    bool canFinish(int nc, vector<vector<int>>& prereq) {
+        // creating adj list
+        for (auto &lists : prereq) {
+            adj[lists[0]].push_back(lists[1]);
         }
-        for (int i = 0;i < numCourses;i++) {
-            if (st.find(i) == st.end() && !dfs(i)) return false;
+        // CHECK for dis-connected component
+        for (int i = 0;i < nc;i++) {
+            if (visited.find(i) == visited.end()) {
+                if (!dfs(i)) 
+                    return false;
+            }
         }
         return true;
     }
 private:
     bool dfs(int sv) {
-        if (st.find(sv) != st.end()) return false;
-        if (adj[sv].empty()) return true;
-        
-        st.insert(sv);
+        // check for cycles
+        if (visited.find(sv) != visited.end()) 
+            return false;
+        if (adj[sv].empty()) 
+            return true;
+        visited.insert(sv);
         for (auto &node : adj[sv]) {
-            if (!dfs(node)) return false;
+            if (!dfs(node)) 
+                return false;
         }
+        // here in this point we if we don't find any loop then we reached a position where that course could be complete so we can remove that dependency
         adj[sv].clear();
-        st.erase(sv);
+        visited.erase(sv);
         return true;
     }
 };
