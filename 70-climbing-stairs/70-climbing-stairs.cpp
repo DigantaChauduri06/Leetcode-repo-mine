@@ -1,16 +1,12 @@
 class Solution {
-    vector<int> dp;
 public:
     int climbStairs(int n) {
-        dp.assign(n+1, -1);
-        return fun(n);
-    }
-private:
-    int fun(int n) {
-        if (n == 0 || n == 1) 
-            return 1;
-        if (dp[n] != -1) 
-            return dp[n];
-        return dp[n] =  fun(n-1) + fun(n-2);
+        int prev1 = 1, prev2 = 1;
+        for (int i = 2;i <= n;i++) {
+            int cur = prev1 + prev2;
+            prev2 = prev1;
+            prev1 = cur;
+        }
+        return prev1;
     }
 };
