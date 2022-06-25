@@ -11,12 +11,15 @@ public:
     }
 private:
     int fun(vector<int> &nums) {
-        dp[0] = 0;
-        dp[1] = nums[0];
+        int prev1 = 0, prev2 = nums[0];
+        int cur = prev2;
         for (int i = 1;i < n;i++) {
-            dp[i+1] = max(dp[i], dp[i-1] + nums[i]);
+            // dp[i+1] = max(dp[i], dp[i-1] + nums[i]);
+            cur = max(cur, prev1 + nums[i]);
+            prev1 = prev2;
+            prev2 = cur;
         }
-        return dp[n];
+        return cur;
     }
 };
 
