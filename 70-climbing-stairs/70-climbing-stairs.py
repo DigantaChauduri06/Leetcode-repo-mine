@@ -1,6 +1,5 @@
-track = {}
 class Solution:
-    def climbStairs(self, n: int) -> int:
+    def climbStairs(self, n: int, track = {}) -> int:
         if n <= 2:
             return n
         if n in track:
