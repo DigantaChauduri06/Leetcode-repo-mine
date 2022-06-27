@@ -1,18 +1,12 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        if len(cost) <= 2:
-            return cost[0] if len(cost) == 1 else min(cost[0], cost[1])
-        n = len(cost)
-        dp = [0] * (n+1)
-        dp[0],dp[1] = cost[0],cost[1]
-        
-        for i in range(2, n):
-            dp[i] = min(dp[i-1], dp[i-2]) + cost[i]
-    
-        return min(dp[n-1], dp[n-2])
-    
-    
-    
+        prev1,prev2 = cost[0], cost[1]
+         # dp[i] = min(dp[i-1], dp[i-2]) + cost[i]
+        for i in range(2, len(cost)):
+            cur = min(prev1, prev2) + cost[i]
+            prev1 = prev2
+            prev2 = cur
+        return min(prev1, prev2)
     
     
     
@@ -28,3 +22,15 @@ class Solution:
 #             return ans
         
 #         return min(helper(0), helper(1)) 
+
+##################################
+#         if len(cost) <= 2:
+#             return cost[0] if len(cost) == 1 else min(cost[0], cost[1])
+#         n = len(cost)
+#         dp = [0] * (n+1)
+#         dp[0],dp[1] = cost[0],cost[1]
+        
+#         for i in range(2, n):
+#             dp[i] = min(dp[i-1], dp[i-2]) + cost[i]
+    
+#         return min(dp[n-1], dp[n-2])
