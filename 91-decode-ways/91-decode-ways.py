@@ -1,6 +1,7 @@
 class Solution:
     def numDecodings(self, s: str) -> int:
         dp = [-1] * (len(s)+1)
+        @cache
         def numberOfWays(s):
             if len(s) == 0:
                 return 1
@@ -20,5 +21,3 @@ class Solution:
             dp[len(s)] = op1 + op2
             return dp[len(s)]
         return numberOfWays(s)
-            
-        
