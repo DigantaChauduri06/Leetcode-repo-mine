@@ -1,7 +1,7 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         wordSet = set(wordDict)
-        @cache
+        @lru_cache(None)
         def dfs(i):
             if i == len(s):
                 return True
