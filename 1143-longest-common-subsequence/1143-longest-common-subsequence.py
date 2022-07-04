@@ -9,7 +9,8 @@ class Solution:
                 return dp[(x,y)]
             # only take if charecters are same
             if text1[x] == text2[y]:
-                return helper(x+1, y+1) + 1
+                dp[(x,y)] = helper(x+1, y+1) + 1
+                return dp[(x,y)]
             # otherwise ignore
             dp[(x,y)] = max(helper(x+1, y), helper(x, y+1))
             return dp[(x,y)]
