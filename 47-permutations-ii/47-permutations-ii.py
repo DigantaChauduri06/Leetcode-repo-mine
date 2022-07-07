@@ -3,7 +3,7 @@ class Solution:
         res = []
         def helper(nums, idx = 0):
             if idx >= len(nums):
-                res.append(nums.copy())
+                res.append(nums[:])
             seen = set()
             for i in range(idx, len(nums)):
                 if nums[i] in seen:
