@@ -1,9 +1,10 @@
 class Solution:
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
             res, temp = [],[]
-            candidates = [((i%9)+1) for i in range(n)]
-            candidates.sort()
+            # candidates = [((i%9)+1) for i in range(n)]
+            candidates = [i+1 for i in range(9 if n >= 9 else n)]
             # print(candidates)
+            # candidates.sort()
             def helper(i, tar):
                 if i == len(candidates):
                     if tar == 0 and len(temp) == k:
