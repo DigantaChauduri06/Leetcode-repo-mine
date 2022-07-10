@@ -10,21 +10,22 @@ options = {
 }
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        # res = []
+        res, tmp = [], []
         if len(digits) == 0:
             return []
         def helper(i):
-            if i == len(digits) - 1:
-                return list(options[digits[i]])
-            remaining = helper(i+1)
-            chars = options[digits[i]]
-            ans = []
-            # print(remaining)
-            for ch in chars:
-                for i in range(len(remaining)):
-                    ans.append(ch + remaining[i])
-            return ans
-        return helper(0)
+            if i == len(digits):
+                s = ''.join(tmp.copy())
+                res.append(s)
+                return
+            cur = options[digits[i]]
+            for j in range(len(cur)):
+                tmp.append(cur[j])
+                helper(i+1)
+                tmp.pop()
+            
+        helper(0)
+        return res
 """
  d e f d e f d e f
  a a a b b b c c c
