@@ -12,10 +12,8 @@ class Solution:
                image[r][c] != startingColor):
                 return
             image[r][c] = 'X'
-            helper(r+1,c)
-            helper(r, c+1)
-            helper(r-1, c)
-            helper(r, c-1)
+            for i in range(4):
+                helper(r+dx[i], c+dy[i])
         
         helper(sr, sc)
         for i in range(ROW):
