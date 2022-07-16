@@ -5,7 +5,7 @@ class Solution:
             if i == len(s):
                 # print(tmp, dots)
                 if dots == -1:
-                    res.append(".".join(tmp))
+                    res.append(".".join(tmp[:]))
                 return
             
             if i < len(s):
