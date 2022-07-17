@@ -1,20 +1,14 @@
-function SelectionSort(array: number[]) {
+function InsertionSort(array: number[]) {
   for (let i = 0; i < array.length; i++) {
-    let swappedIdx = i;
-    let minIdx = i;
-    let minVal = array[i];
-    for (let j = i + 1; j < array.length; j++) {
-      if (minVal > array[j]) {
-        minVal = array[j];
-        minIdx = j;
-      }
+    let key = array[i];
+    let j = i - 1;
+    for (j; j >= 0 && (array[j] > key); j -= 1) {
+        array[j+1] = array[j];
     }
-    let tmp = array[swappedIdx]
-    array[swappedIdx] = array[minIdx]
-    array[minIdx] = tmp
+     array[j+1] = key;
   }
 }
 function sortArray(nums: number[]): number[] {
-    SelectionSort(nums)
+    InsertionSort(nums)
     return nums
 };
