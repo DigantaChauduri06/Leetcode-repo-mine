@@ -8,17 +8,9 @@ class MyCalendar:
             if (start >= st and start < ed or
                end > st and end <= ed or
                start <= st and start < ed and ed > start and ed <= end):
-                # print(start,end,[st,ed])
                 return False
         self.slots.append([start, end])
-        # print(self.slots)
         return True
-                
-
-"""
-[19,30],[13,32]
-
-"""
         
 # Your MyCalendar object will be instantiated and called as such:
 # obj = MyCalendar()
