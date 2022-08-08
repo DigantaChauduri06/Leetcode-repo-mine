@@ -1,11 +1,4 @@
 class Solution:
-    def nullifyCOL(self, mat, k):
-        for i in range(self.COL):
-            mat[k][i] = 0
-    def nullifyROW(self, mat, k):
-        for i in range(self.ROW):
-            mat[i][k] = 0
-
     def setZeroes(self, mat: List[List[int]]) -> None:
         rowZero = mat[0][0] == 0
         self.ROW,self.COL = len(mat),len(mat[0])
