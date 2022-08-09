@@ -9,5 +9,4 @@ class Solution:
             for j in range(i+1,COL):
                 #swap
                 mat[i][j],mat[j][i] = mat[j][i],mat[i][j]
-        for i in range(ROW):
             mat[i] = mat[i][::-1]
