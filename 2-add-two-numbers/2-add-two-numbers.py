@@ -4,16 +4,6 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def reverse(self, head):
-        cur,prev = head, None
-        while cur:
-            nxt = cur.next
-            cur.next = prev
-            prev = cur
-            cur = nxt
-        
-        return prev
-        
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         if not l1 and not l2:
             return 0
