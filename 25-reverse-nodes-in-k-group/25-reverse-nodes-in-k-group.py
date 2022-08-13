@@ -2,8 +2,6 @@ class Solution:
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         if k == 1:
             return head
-        dummy = ListNode()
-        nn = dummy
         start = None
         node = None
         tail = None
