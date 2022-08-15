@@ -21,6 +21,4 @@ class Solution:
                     si+=1
                 else:
                     ei-=1
-            while i+1 < len(nums) and nums[i] == nums[i+1]:
-                i+=1
         return ans
