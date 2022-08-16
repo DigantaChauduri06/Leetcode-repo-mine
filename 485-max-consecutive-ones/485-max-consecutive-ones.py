@@ -9,7 +9,6 @@ class Solution:
                     i+=1
                     cur +=1
                 mx = max(cur, mx)
-            # print(i)
             i+=1
         if mx == 0 and 1 in nums:
             return 1
