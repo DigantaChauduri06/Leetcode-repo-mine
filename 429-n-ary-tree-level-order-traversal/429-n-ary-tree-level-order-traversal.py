@@ -23,7 +23,6 @@ class Solution:
                 for n in f.children:
                     tmp.append(n.val)
                     tmpNodes.append(n)
-                    # print(len(tmpNodes))
             if tmp != []:
                 queue.extend(tmpNodes)
                 ans.append(tmp)
