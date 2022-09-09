@@ -1,6 +1,6 @@
 class Solution:
     def numberOfWeakCharacters(self, p: List[List[int]]) -> int:
-        p.sort(key = lambda x: (x[0], -x[1]), reverse = True)
+        p.sort(key = lambda x: (-x[0], x[1]))
         cnt = 0
         maxD = -1e9
         for _,dif in p:
