@@ -16,6 +16,8 @@ class Solution:
             if not root:
                 return False
             left = helper(root.left, (cur+root.val))
+            if left:
+                return True
             right = helper(root.right, (cur+root.val))
             return left or right
         return helper(root)
