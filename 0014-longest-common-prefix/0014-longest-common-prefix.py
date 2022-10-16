@@ -1,6 +1,6 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        strs.sort(key=lambda x: len(x))
+        # strs.sort(key=lambda x: len(x))
         # print(strs)
         word = strs[0]
         if len(word) == 1:
