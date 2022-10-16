@@ -1,7 +1,5 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        # strs.sort(key=lambda x: len(x))
-        # print(strs)
         word = strs[0]
         if len(word) == 1:
             for i in range(1,len(strs)):
@@ -12,7 +10,6 @@ class Solution:
             pre = word[:i]
             notStarts = True
             for j in range(1, len(strs)):
-                print("pre", pre)
                 if not strs[j].startswith(pre):
                     notStarts = False
                     break
