@@ -1,11 +1,17 @@
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root: return []
         ans = []
-        def helper(root):
-            if not root:
-                return
-            helper(root.left)
+        stack = []
+        # stack.append(root)
+        while True:
+            while root:
+                stack.append(root)
+                root = root.left
+            if not stack:
+                return ans
+            root = stack.pop()
             ans.append(root.val)
-            helper(root.right)
-        helper(root)
+            root = root.right
+            
         return ans
