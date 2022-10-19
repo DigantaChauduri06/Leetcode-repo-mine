@@ -8,7 +8,12 @@ class Solution:
         if not head or not head.next:
             return head
         newHead = self.reverseList(head.next)
-        after = head.next
+        # after = head.next
         head.next = None
-        after.next = head
+        # after.next = head
+        tmp = newHead
+        while tmp and tmp.next:
+            tmp = tmp.next
+        if tmp:
+            tmp.next = head
         return newHead
