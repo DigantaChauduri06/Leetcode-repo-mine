@@ -17,9 +17,6 @@ class Solution:
                 return False
         filtered = list(s)
         filtered = list(filter(fun, filtered))
-
-        filtered = "".join(filtered)
-        # print(filtered)
         i,j = 0,len(filtered)-1
         return self.isPalin(i,j,filtered)
         
