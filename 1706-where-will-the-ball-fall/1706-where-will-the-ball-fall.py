@@ -1,6 +1,7 @@
 class Solution:
     def findBall(self, grid: List[List[int]]) -> List[int]:
         ROW,COL = len(grid),len(grid[0])
+        @cache
         def helper(i,j):
             if i == ROW:
                 return j
