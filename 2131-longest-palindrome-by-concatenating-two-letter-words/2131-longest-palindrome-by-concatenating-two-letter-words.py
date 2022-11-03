@@ -2,7 +2,6 @@ class Solution:
     def longestPalindrome(self, words: List[str]) -> int:
         mpp = defaultdict(lambda : 0)
         cnt = 0
-        take = set()
         for word in words:
             mpp[word]+=1
         for word in words:
@@ -15,8 +14,6 @@ class Solution:
                     cnt += 4
                     mpp[word] -= 1
                     mpp[word[::-1]] -= 1
-                    # take.add(word)
-                    # take.add(word[::-1])
 
         for key in mpp:
             if mpp[key] >= 1:
@@ -24,10 +21,3 @@ class Solution:
                     cnt += 2
                     break
         return cnt
-# ["ab","ty","yt","lc","cl","ab"]
-
-"""
-lctyabytcl
-
-
-"""
