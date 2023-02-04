@@ -7,13 +7,11 @@ public:
             mpp[s]++;
         }
         for (int i = 0;i <= s2.size() - s1.size();i++) {
-                string sub = s2.substr(i, s1.size());
-                // cout << sub << endl;
+                // string sub = s2.substr(i, s1.size());
                 unordered_map<char, int> map2;
                 bool flag = false;
-                // if  (sub.size() != s1.size()) continue;
-                for (int k = 0;k < sub.size();k++) {
-                    map2[sub[k]]++;
+                for (int k = i;k < i+s1.size();k++) {
+                    map2[s2[k]]++;
                 }
                 if (mpp == map2) return true; 
         }
